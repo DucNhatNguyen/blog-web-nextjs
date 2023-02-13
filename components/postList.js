@@ -9,22 +9,22 @@ export default function PostList({ post, aspect, preloadImage }) {
     <>
       <div className="cursor-pointer group">
         <div
-          className={cx(
-            "relative overflow-hidden transition-all bg-gray-100 rounded-md dark:bg-gray-800   hover:scale-105",
+          className={`relative overflow-hidden transition-all bg-gray-100 rounded-md dark:bg-gray-800   hover:scale-105 aspect-video ${
             aspect === "landscape" ? "aspect-video" : "aspect-square"
-          )}
+          }`}
         >
           <Link href={`/post/${post.slug.current}`}>
             {true ? (
               <Image
-                src="https://pixlr.com/images/index/remove-bg.webp"
+                src={require("../public/vercel.svg")}
+                hostname="pixlr.com"
                 //blurDataURL={imageProps.blurDataURL}
                 alt={"Thumbnail"}
-                placeholder="blur"
+                //placeholder="blur"
                 sizes="80vw"
                 //sizes="(max-width: 640px) 90vw, 480px"
                 layout="fill"
-                objectFit="cover"
+                //objectFit="cover"
                 priority={preloadImage ? true : false}
                 className="transition-all"
               />
@@ -65,14 +65,12 @@ export default function PostList({ post, aspect, preloadImage }) {
             <div className="relative flex-shrink-0 w-5 h-5">
               {post.author.image && (
                 <Image
-                  src="https://cdn.sanity.io/images/cijrdavx/production/05951a0ec1a6ffc54f615ab160649e92fea982d0-800x764.png?rect=0,0,800,468&w=1920&q=75&fit=clip&auto=format"
+                  src={require("../public/thirteen.svg")}
                   //blurDataURL={AuthorimageProps.blurDataURL}
                   //loader={AuthorimageProps.loader}
-                  objectFit="cover"
-                  layout="fill"
-                  alt={post?.author?.name}
-                  placeholder="blur"
                   sizes="30px"
+                  width={800}
+                  height={764}
                   className="rounded-full"
                 />
               )}

@@ -48,39 +48,30 @@ export default function Navbar(props) {
               <div className="flex flex-wrap justify-between md:gap-10 md:flex-nowrap">
                 <div className="flex-col items-center justify-start order-1 hidden w-full md:flex md:flex-row md:justify-end md:w-auto md:order-none md:flex-1">
                   {leftmenu.map((item, index) => (
-                    <Link href={item.href} key={index}>
-                      {/* <a className="px-5 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-blue-500">
-                        {item.label}
-                      </a> */}
+                    // <Link href={item.href} key={index}>
+                    <a className="px-5 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-blue-500">
                       {item.label}
-                    </Link>
+                    </a>
+                    //{item.label}
+                    //</Link>
                   ))}
                 </div>
                 <div className="flex items-center justify-between w-full md:w-auto">
                   <Link href="/">
-                    {props.logo ? (
+                    {true ? (
                       <Image
-                        {...GetImage(props.logo)}
+                        src={require("../public/vercel.svg")}
                         alt="Logo"
+                        width={112}
+                        heigh={44.11}
                         sizes="(max-width: 640px) 100vw, 200px"
                         priority={true}
                       />
                     ) : (
-                      <span className="block text-center">Stablo</span>
+                      <span className="block text-center">Stabldo</span>
                     )}
                   </Link>
-                  <Link href="/">
-                    {props.logoalt ? (
-                      <Image
-                        {...GetImage(props.logoalt)}
-                        alt="Logo"
-                        sizes="(max-width: 640px) 100vw, 200px"
-                        priority={true}
-                      />
-                    ) : (
-                      <span className="block text-center">Stablo</span>
-                    )}
-                  </Link>
+
                   <Disclosure.Button
                     aria-label="Toggle Menu"
                     className="px-2 py-1 ml-auto text-gray-500 rounded-md md:hidden focus:text-blue-500 focus:outline-none dark:text-gray-300 "
@@ -109,14 +100,12 @@ export default function Navbar(props) {
 
                 <div className="flex-col items-center justify-start order-2 hidden w-full md:flex md:flex-row md:w-auto md:flex-1 md:order-none">
                   {rightmenu.map((item, index) => (
-                    <Link href={item.href} key={index}>
-                      <span> {item.label}</span>
-                      {item.badge && (
-                        <span className="bg-blue-100 text-blue-600 text-xs font-semibold ml-2 px-2 py-0.5 rounded dark:bg-cyan-200 dark:text-blue-800 ">
-                          {item.badge}
-                        </span>
-                      )}
-                    </Link>
+                    // <Link href={item.href} key={index}>
+                    <a className="px-5 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-blue-500">
+                      {item.label}
+                    </a>
+                    //{item.label}
+                    //</Link>
                   ))}
                 </div>
               </div>
