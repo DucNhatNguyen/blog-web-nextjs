@@ -1,0 +1,141 @@
+{
+  "authors": [
+    {
+      "_createdAt": "2022-05-11T13:17:13Z",
+      "_id": "290948c1-9a04-41a4-9b07-960131320993",
+      "_rev": "L1x6OoCeBFQajmzrxwelTR",
+      "_type": "author",
+      "_updatedAt": "2022-05-20T12:50:25Z",
+      "bio": [
+        {
+          "_key": "49decc02f4f6",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "add99fe1bf81",
+              "_type": "span",
+              "marks": [],
+              "text": "Mario is a Staff Engineer specialising in Frontend at "
+            },
+            {
+              "_key": "08c2faf2f982",
+              "_type": "span",
+              "marks": ["8fb88fe0431f"],
+              "text": "Vercel"
+            },
+            {
+              "_key": "e9332a10a47c",
+              "_type": "span",
+              "marks": [],
+              "text": ", as well as being a co-founder of Acme and the content management system Sanity. Prior to this, he was a Senior Engineer at Apple."
+            }
+          ],
+          "markDefs": [
+            {
+              "_key": "8fb88fe0431f",
+              "_type": "link",
+              "href": "https://vercel.com/"
+            }
+          ],
+          "style": "normal"
+        }
+      ],
+      "image": {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-4a21e3f085ed310d00fbbd294eb2392cde7f9acc-3648x3648-jpg",
+          "_type": "reference"
+        }
+      },
+      "name": "Mario Sanchez",
+      "slug": {
+        "_type": "slug",
+        "current": "mario-sanchez"
+      }
+    },
+    {
+      "_createdAt": "2022-05-11T13:23:45Z",
+      "_id": "621402af-4c79-4728-9fbd-19b17e6256bc",
+      "_rev": "O6BCyrheCnoszLth8lfUkA",
+      "_type": "author",
+      "_updatedAt": "2022-05-20T12:49:09Z",
+      "bio": [
+        {
+          "_key": "26377e41356f",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "ba1d24e6bafb",
+              "_type": "span",
+              "marks": [],
+              "text": "Joshua is a Microsoft Azure Certified Cloud Professional and a Google Certified Associate Cloud Engineer. A Data Analytics at Acme, specializing in the use of cloud infrastructure for Machine Learning and Deep Learning operation at scale."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        }
+      ],
+      "image": {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-cd477178ed12f28ef668adaf9fcae6b8fc351a08-4480x6415-jpg",
+          "_type": "reference"
+        },
+        "crop": {
+          "_type": "sanity.imageCrop",
+          "bottom": 0.4139017543859651,
+          "left": 0,
+          "right": 0,
+          "top": 0
+        },
+        "hotspot": {
+          "_type": "sanity.imageHotspot",
+          "height": 0.5860982456140349,
+          "width": 1,
+          "x": 0.5,
+          "y": 0.29304912280701745
+        }
+      },
+      "name": "Joshua Wood",
+      "slug": {
+        "_type": "slug",
+        "current": "joshua-wood"
+      }
+    },
+    {
+      "_createdAt": "2022-05-11T13:22:25Z",
+      "_id": "95daa366-f2e1-42d9-879c-fecf89731048",
+      "_rev": "g8TtsqiUI2SyF4eBZNE4zL",
+      "_type": "author",
+      "_updatedAt": "2022-05-20T12:44:50Z",
+      "bio": [
+        {
+          "_key": "a6c7a5d07a03",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "88ec1f6c13aa",
+              "_type": "span",
+              "marks": [],
+              "text": "Erika Oliver is a successful entrepreuner. She is the founder of Acme Inc, a bootstrapped business that builds affordable SaaS tools for local news, indie publishers, and other small businesses."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        }
+      ],
+      "image": {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-4e20f048a69ac41ab7a6b5f1687f0547379b7469-3648x5472-jpg",
+          "_type": "reference"
+        }
+      },
+      "name": "Erika Oliver",
+      "slug": {
+        "_type": "slug",
+        "current": "erika-oliver"
+      }
+    }
+  ]
+}
