@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 import { parseISO, format } from "date-fns";
 import { PhotographIcon } from "@heroicons/react/outline";
@@ -72,6 +72,7 @@ export default function PostList({ post, aspect, preloadImage }) {
                   width={800}
                   height={764}
                   className="rounded-full"
+                  alt="thumbnail"
                 />
               )}
             </div>

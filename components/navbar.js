@@ -1,7 +1,7 @@
 import React from "react";
 import { Disclosure } from "@headlessui/react";
 import Link from "next/link";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 export default function Navbar(props) {
   const leftmenu = [
@@ -49,9 +49,13 @@ export default function Navbar(props) {
                 <div className="flex-col items-center justify-start order-1 hidden w-full md:flex md:flex-row md:justify-end md:w-auto md:order-none md:flex-1">
                   {leftmenu.map((item, index) => (
                     // <Link href={item.href} key={index}>
-                    <a className="px-5 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-blue-500">
+                    <Link
+                      key={index}
+                      href={item.href}
+                      className="px-5 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-blue-500"
+                    >
                       {item.label}
-                    </a>
+                    </Link>
                     //{item.label}
                     //</Link>
                   ))}
@@ -101,9 +105,13 @@ export default function Navbar(props) {
                 <div className="flex-col items-center justify-start order-2 hidden w-full md:flex md:flex-row md:w-auto md:flex-1 md:order-none">
                   {rightmenu.map((item, index) => (
                     // <Link href={item.href} key={index}>
-                    <a className="px-5 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-blue-500">
+                    <Link
+                      key={index}
+                      href={item.href}
+                      className="px-5 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-blue-500"
+                    >
                       {item.label}
-                    </a>
+                    </Link>
                     //{item.label}
                     //</Link>
                   ))}

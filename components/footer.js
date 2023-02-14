@@ -1,6 +1,6 @@
 //import Container from "@components/container";
 //import ThemeSwitch from "@components/themeSwitch";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import VercelLogo from "../public/vercel.svg";
 
 export default function Footer(props) {
