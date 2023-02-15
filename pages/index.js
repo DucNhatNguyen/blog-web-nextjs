@@ -4,28 +4,22 @@ import Image from "next/legacy/image";
 import Layout from "../components/layout";
 import { Inter } from "@next/font/google";
 import PostList from "../components/postList";
-import useSWR from "swr";
-import path from "path";
-import fsPromises from "fs/promises";
+import axios from "axios";
 
-const inter = Inter({ subsets: ["latin"] });
-
-const fetcher = (url) => fetch(url).then((res) => res.json());
-
-export default function Home(props) {
-  const [posts, setPosts] = useState([]);
+export default function Home({ data }) {
+  const [posts, setPosts] = useState();
   useEffect(() => {
-    setPosts(props.postdata);
-    console.log(props.postdata);
+    console.log("dadaadad", data);
+    setPosts(data);
   }, []);
 
   return (
     <Layout>
       <div className="container px-8 py-5 lg:py-8 mx-auto xl:px-5 max-w-screen-lg">
         <div className="grid gap-10 lg:gap-10 md:grid-cols-2 ">
-          {posts.slice(0, 2).map((post) => (
+          {posts?.features.map((post) => (
             <PostList
-              key={post._id}
+              key={post.id}
               post={post}
               aspect="landscape"
               preloadImage={true}
@@ -36,16 +30,16 @@ export default function Home(props) {
           .NET
         </h1>
         <div className="grid gap-10 mt-10 lg:gap-10 md:grid-cols-2 xl:grid-cols-3 ">
-          {posts.slice(3, 6).map((post) => (
-            <PostList key={post._id} post={post} aspect="square" />
+          {posts?.netBlog.map((post) => (
+            <PostList key={post.id} post={post} aspect="square" />
           ))}
         </div>
         <h1 className="mt-20 mb-3 text-3xl font-semibold tracking-tight text-center lg:leading-snug text-brand-primary lg:text-4xl dark:text-white">
           Giai Tri
         </h1>
         <div className="grid gap-10 mt-10 lg:gap-10 md:grid-cols-2 xl:grid-cols-3 ">
-          {posts.slice(3, 6).map((post) => (
-            <PostList key={post._id} post={post} aspect="square" />
+          {posts?.relaxBlog.map((post) => (
+            <PostList key={post.id} post={post} aspect="square" />
           ))}
         </div>
       </div>
@@ -53,12 +47,13 @@ export default function Home(props) {
   );
 }
 
-export async function getStaticProps() {
-  const filePath = path.join(process.cwd(), "/testing/posts.json");
-  const jsonData = await fsPromises.readFile(filePath);
-  const list = JSON.parse(jsonData);
+export const getStaticProps = async ({ params }) => {
+  const { data } = await axios.get("http://localhost:8080/api/web/home-page");
 
   return {
-    props: list,
+    props: {
+      data: data,
+    },
+    revalidate: 86400,
   };
-}
+};

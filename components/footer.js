@@ -1,8 +1,3 @@
-//import Container from "@components/container";
-//import ThemeSwitch from "@components/themeSwitch";
-import Image from "next/legacy/image";
-import VercelLogo from "../public/vercel.svg";
-
 export default function Footer(props) {
   return (
     <div className="mt-10 border-t border-gray-100 dark:border-gray-800">
@@ -40,7 +35,7 @@ export default function Footer(props) {
       </div>
       <div className="flex items-center justify-between mt-2">
         <div className="mt-5">
-          <a
+          {/* <a
             href="https://vercel.com/?utm_source=web3templates&utm_campaign=oss"
             target="_blank"
             rel="noopener noreferrer"
@@ -55,11 +50,10 @@ export default function Footer(props) {
               width="150"
               height="25"
             />
-          </a>
+          </a> */}
         </div>
         {/* <ThemeSwitch /> */}
       </div>
-      <Backlink />
     </div>
   );
 }

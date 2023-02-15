@@ -4,7 +4,7 @@ import { parseISO, format } from "date-fns";
 import { PhotographIcon } from "@heroicons/react/outline";
 import CategoryLabel from "../components/blog/category";
 
-export default function PostList({ post, aspect, preloadImage }) {
+export default function PostList({ post, aspect }) {
   return (
     <>
       <div className="cursor-pointer group">
@@ -13,20 +13,12 @@ export default function PostList({ post, aspect, preloadImage }) {
             aspect === "landscape" ? "aspect-video" : "aspect-square"
           }`}
         >
-          <Link href={`/post/${post.slug.current}`}>
-            {true ? (
-              <Image
-                src={require("../public/vercel.svg")}
-                hostname="pixlr.com"
-                //blurDataURL={imageProps.blurDataURL}
-                alt={"Thumbnail"}
-                //placeholder="blur"
-                sizes="80vw"
-                //sizes="(max-width: 640px) 90vw, 480px"
-                layout="fill"
-                //objectFit="cover"
-                priority={preloadImage ? true : false}
+          <Link href={`/post/${post.slug}`}>
+            {post.thumbnail ? (
+              <img
+                src={post.thumbnail}
                 className="transition-all"
+                object-fit="cover"
               />
             ) : (
               <span className="absolute w-16 h-16 text-gray-200 -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
@@ -35,9 +27,9 @@ export default function PostList({ post, aspect, preloadImage }) {
             )}
           </Link>
         </div>
-        <CategoryLabel categories={post.categories} />
+        <CategoryLabel categories={post.cate} />
         <h2 className="mt-2 text-lg font-semibold tracking-normal text-brand-primary dark:text-white">
-          <Link href={`/post/${post.slug.current}`}>
+          <Link href={`/post/${post.slug}`}>
             <span
               className="     bg-gradient-to-r from-green-200 to-green-100 dark:from-purple-800 dark:to-purple-900
           bg-[length:0px_10px]
@@ -52,17 +44,17 @@ export default function PostList({ post, aspect, preloadImage }) {
           </Link>
         </h2>
 
-        <div className="hidden">
+        {/* <div className="hidden">
           {post.excerpt && (
             <p className="mt-2 text-sm text-gray-500 dark:text-gray-400 line-clamp-3">
               <Link href={`/post/${post.slug.current}`}>{post.excerpt}</Link>
             </p>
           )}
-        </div>
+        </div> */}
 
         <div className="flex items-center mt-3 space-x-3 text-gray-500 dark:text-gray-400">
           <div className="flex items-center gap-3">
-            <div className="relative flex-shrink-0 w-5 h-5">
+            {/* <div className="relative flex-shrink-0 w-5 h-5">
               {post.author.image && (
                 <Image
                   src={require("../public/thirteen.svg")}
@@ -75,18 +67,18 @@ export default function PostList({ post, aspect, preloadImage }) {
                   alt="thumbnail"
                 />
               )}
-            </div>
-            <span className="text-sm">{post.author.name}</span>
+            </div> */}
+            <span className="text-sm">{post.author_author.name}</span>
           </div>
           <span className="text-xs text-gray-300 dark:text-gray-600">
             &bull;
           </span>
           <time
             className="text-sm"
-            dateTime={post?.publishedAt || post._createdAt}
+            dateTime={post?.publicdate || post.createdAt}
           >
             {format(
-              parseISO(post?.publishedAt || post._createdAt),
+              parseISO(post?.publicdate || post.createdAt),
               "MMMM dd, yyyy"
             )}
           </time>
