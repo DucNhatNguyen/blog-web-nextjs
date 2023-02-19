@@ -15,10 +15,11 @@ export default function PostList({ post, aspect }) {
         >
           <Link href={`/post/${post.slug}`}>
             {post.thumbnail ? (
-              <img
+              <Image
                 src={post.thumbnail}
-                className="transition-all"
-                object-fit="cover"
+                layout="fill"
+                alt="Image"
+                hostname="res.cloudinary.com"
               />
             ) : (
               <span className="absolute w-16 h-16 text-gray-200 -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
@@ -27,7 +28,7 @@ export default function PostList({ post, aspect }) {
             )}
           </Link>
         </div>
-        <CategoryLabel categories={post.cate} />
+        <CategoryLabel category={post.cate} />
         <h2 className="mt-2 text-lg font-semibold tracking-normal text-brand-primary dark:text-white">
           <Link href={`/post/${post.slug}`}>
             <span

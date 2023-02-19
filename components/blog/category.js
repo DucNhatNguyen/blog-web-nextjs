@@ -1,11 +1,12 @@
 import Link from "next/link";
 import Label from "../ui/label";
 
-export default function CategoryLabel({ categories }) {
+export default function CategoryLabel({ category }) {
+  console.log("cate", category);
   return (
     <div className="flex gap-3">
       <Link href="#">
-        <Label>{categories.title}</Label>
+        <Label>{category.title}</Label>
       </Link>
     </div>
   );

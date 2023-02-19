@@ -1,33 +1,30 @@
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/legacy/image";
 import Link from "next/link";
 import ErrorPage from "next/error";
 import Layout from "../../components/layout";
 import CategoryLabel from "../../components/blog/category";
-import AuthorCard from "../../components/blog/authorCard";
-import path from "path";
-import fsPromises from "fs/promises";
 import { parseISO, format } from "date-fns";
-import { useEffect, useState } from "react";
+import axios from "axios";
 
-export default function Post(props) {
-  const [post, setPost] = useState({});
+export default function Post({ data }) {
+  const [post, setPost] = useState();
   const [author, setAuthor] = useState({});
-  const { postdata } = props;
 
   const router = useRouter();
   const { slug } = router.query;
 
-  if (!router.isFallback && !slug) {
-    return <ErrorPage statusCode={404} />;
-  }
-
   useEffect(() => {
-    const test = postdata.postdata.find((x) => x.slug.current === slug);
-    console.log("param", test.author);
-    setPost(test);
-    setAuthor(test.author);
-  }, [slug]);
+    if (!router.isFallback && !slug) {
+      return <ErrorPage statusCode={404} />;
+    }
+    // const test = props.find((x) => x.slug.current === slug);
+    // console.log("param", test.author);
+    console.log("data", data);
+    setPost(data);
+    // setAuthor(test.author);
+  }, [data, router.isFallback, slug]);
 
   return (
     <>
@@ -54,11 +51,11 @@ export default function Post(props) {
         <div className="container px-8 py-5 lg:py-8 mx-auto xl:px-5 max-w-screen-lg !pt-0">
           <div className="max-w-screen-md mx-auto ">
             <div className="flex justify-center">
-              <CategoryLabel categories={post.categories} />
+              <CategoryLabel category={data.cate} />
             </div>
 
             <h1 className="mt-2 mb-3 text-3xl font-semibold tracking-tight text-center lg:leading-snug text-brand-primary lg:text-4xl dark:text-white">
-              {post.title}
+              {data.title}
             </h1>
 
             <div className="flex justify-center mt-3 space-x-3 text-gray-500 ">
@@ -93,7 +90,7 @@ export default function Post(props) {
                         "MMMM dd, yyyy"
                       )}
                     </time>
-                    <span>· {post.estReadingTime || "5"} min read</span>
+                    <span>· {data.estReadingTime || "5"} min read</span>
                   </div>
                 </div>
               </div>
@@ -104,7 +101,7 @@ export default function Post(props) {
         <div className="relative z-0 max-w-screen-lg mx-auto overflow-hidden lg:rounded-lg aspect-video">
           {true && (
             <Image
-              src={require("../../public/05951a0ec1a6ffc54f615ab160649e92fea982d0-800x764.webp")}
+              src={data.thumbnail}
               //loader={imageProps.loader}
               //blurDataURL={imageProps.blurDataURL}
               alt={"Thumbnail"}
@@ -120,7 +117,7 @@ export default function Post(props) {
         <div className="container px-8 py-5 lg:py-8 mx-auto xl:px-5 max-w-screen-lg">
           <article className="max-w-screen-md mx-auto ">
             <div className="mx-auto my-3 prose prose-base dark:prose-invert prose-a:text-blue-500">
-              <div dangerouslySetInnerHTML={{ __html: post.content }}></div>
+              <div dangerouslySetInnerHTML={{ __html: data.content }}></div>
             </div>
             <div className="flex justify-center mt-7 mb-7  px-5 py-2 text-sm text-blue-600 rounded-full dark:text-blue-500 bg-brand-secondary/20 ">
               <Link href="/">← View all posts</Link>
@@ -134,30 +131,25 @@ export default function Post(props) {
 }
 
 export async function getStaticProps({ params }) {
-  const filePath = path.join(process.cwd(), "/testing/posts.json");
-  const jsonData = await fsPromises.readFile(filePath);
-  const list = JSON.parse(jsonData);
+  const { data } = await axios.get(
+    `http://localhost:8080/api/web/post/${params.slug}`
+  );
 
   return {
     props: {
-      postdata: list,
+      data: data,
     },
     revalidate: 86400,
   };
 }
 
 export async function getStaticPaths() {
-  const filePath = path.join(process.cwd(), "/testing/posts.json");
-  const jsonData = await fsPromises.readFile(filePath);
-  const objectData = JSON.parse(jsonData);
+  const { data } = await axios.get(
+    "http://localhost:8080/api/web/static-post-path"
+  );
 
   return {
-    paths:
-      objectData.postdata?.map((page) => ({
-        params: {
-          slug: page.slug.current,
-        },
-      })) || [],
-    fallback: true,
+    paths: data || [],
+    fallback: false,
   };
 }
