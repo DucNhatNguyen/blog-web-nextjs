@@ -17,3 +17,5 @@ const nextConfig = {
 };
 
 module.exports = nextConfig;
+
+//order-1 hidden w-full md:flex md:flex-row md:justify-end md:w-auto md:order-none md:flex-1
