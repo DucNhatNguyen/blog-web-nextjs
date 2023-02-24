@@ -1,7 +1,6 @@
 import Image from "next/legacy/image";
 import Link from "next/link";
 import { parseISO, format } from "date-fns";
-import { PhotographIcon } from "@heroicons/react/outline";
 import CategoryLabel from "../components/blog/category";
 
 export default function PostList({ post, aspect }) {
@@ -14,18 +13,13 @@ export default function PostList({ post, aspect }) {
           }`}
         >
           <Link href={`/post/${post.slug}`}>
-            {post.thumbnail ? (
-              <Image
-                src={post.thumbnail}
-                layout="fill"
-                alt="Image"
-                hostname="res.cloudinary.com"
-              />
-            ) : (
-              <span className="absolute w-16 h-16 text-gray-200 -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                <PhotographIcon />
-              </span>
-            )}
+            <Image
+              src={post.thumbnail}
+              layout="fill"
+              alt="Image"
+              hostname="res.cloudinary.com"
+              objectFit="cover"
+            />
           </Link>
         </div>
         <CategoryLabel category={post.cate} />

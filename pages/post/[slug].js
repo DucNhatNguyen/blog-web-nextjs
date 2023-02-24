@@ -8,11 +8,9 @@ import CategoryLabel from "../../components/blog/category";
 import { parseISO, format } from "date-fns";
 import axios from "axios";
 import RightSideBar from "@/components/rightSideBar";
+import AuthorCard from "@/components/blog/authorCard";
 
 export default function Post({ data }) {
-  const [post, setPost] = useState();
-  const [author, setAuthor] = useState({});
-
   const router = useRouter();
   const { slug } = router.query;
 
@@ -20,39 +18,16 @@ export default function Post({ data }) {
     if (!router.isFallback && !slug) {
       return <ErrorPage statusCode={404} />;
     }
-    // const test = props.find((x) => x.slug.current === slug);
-    // console.log("param", test.author);
     console.log("data", data);
-    setPost(data);
-    // setAuthor(test.author);
   }, [data, router.isFallback, slug]);
 
   return (
     <>
       <Layout>
         <div className="grid grid-cols-4 gap mt-7">
-          <div className="col-span-3">
-            {/*
-          <div className="relative bg-white/20">
-            <div className="absolute w-full h-full -z-10">
-              {post?.mainImage && (
-                <Image
-                  {...GetImage(post.mainImage)}
-                  alt={post.mainImage?.alt || "Thumbnail"}
-                  layout="fill"
-                  objectFit="cover"
-                />
-              )}
-            </div>
-            <Container className="py-48">
-              <h1 className="relative max-w-3xl mx-auto mb-3 text-3xl font-semibold tracking-tight text-center lg:leading-snug text-brand-primary lg:text-4xl after:absolute after:w-full after:h-full after:bg-white after:inset-0 after:-z-10 after:blur-2xl after:scale-150">
-                {post.title}
-              </h1>
-            </Container>
-          </div> */}
-
-            <div className="container px-8 py-5 lg:py-8 mx-auto xl:px-5 max-w-screen-lg !pt-0">
-              <div className="max-w-screen-md mx-auto ">
+          <div className="col-span-3 ">
+            <div className="container py-5 lg:py-8 max-w-screen-lg !pt-0">
+              <div className="max-w-screen-md ">
                 <div className="flex ">
                   <CategoryLabel category={data.cate} />
                 </div>
@@ -69,11 +44,8 @@ export default function Post({ data }) {
                       {true && (
                         <Image
                           src={require("../../public/vercel.svg")}
-                          //blurDataURL={AuthorimageProps.blurDataURL}
-                          //loader={AuthorimageProps.loader}
                           objectFit="cover"
                           alt={"thumbnail"}
-                          //placeholder="blur"
                           layout="fill"
                           className="rounded-full"
                         />
@@ -101,31 +73,25 @@ export default function Post({ data }) {
               </div>
             </div>
 
-            <div className="relative z-0 max-w-screen-lg mx-auto overflow-hidden lg:rounded-lg aspect-video">
-              {true && (
-                <Image
-                  src={data.thumbnail}
-                  //loader={imageProps.loader}
-                  //blurDataURL={imageProps.blurDataURL}
-                  alt={"Thumbnail"}
-                  //placeholder="blur"
-                  layout="fill"
-                  loading="eager"
-                  //objectFit="cover"
-                />
-              )}
+            <div className="relative z-0 max-w-screen-lg  overflow-hidden lg:rounded-lg aspect-video">
+              <Image
+                src={data.thumbnail}
+                alt={"Thumbnail"}
+                layout="fill"
+                loading="eager"
+                objectFit="cover"
+              />
             </div>
 
-            {/* {post?.mainImage && <MainImage image={post.mainImage} />} */}
-            <div className="container px-8 py-5 lg:py-8 mx-auto xl:px-5 max-w-screen-lg">
-              <article className="max-w-screen-md mx-auto ">
-                <div className="mx-auto my-3 prose prose-base dark:prose-invert prose-a:text-blue-500">
+            <div className="container px-8 py-5 lg:py-8 xl:px-5 max-w-screen-lg">
+              <article className="max-w-screen-lg">
+                <div className="mx-auto my-3 dark:prose-invert prose-a:text-blue-500">
                   <div dangerouslySetInnerHTML={{ __html: data.content }}></div>
                 </div>
                 <div className="flex justify-center mt-7 mb-7  px-5 py-2 text-sm text-blue-600 rounded-full dark:text-blue-500 bg-brand-secondary/20 ">
                   <Link href="/">← View all posts</Link>
                 </div>
-                {/* {<AuthorCard data={author} />} */}
+                {<AuthorCard data={data.author_author} />}
               </article>
             </div>
           </div>

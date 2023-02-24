@@ -22,7 +22,7 @@ export default function Home({ data }) {
 
   return (
     <Layout>
-      <div className="container px-8 py-5 lg:py-8 mx-auto xl:px-5 max-w-screen-lg">
+      <div className="container px-8 py-5 lg:py-8 mx-auto xl:px-5 ">
         <div className="grid gap-10 lg:gap-10 md:grid-cols-2 ">
           {data?.features.map((post) => (
             <PostList
@@ -36,7 +36,7 @@ export default function Home({ data }) {
 
         <div className="grid grid-cols-4 gap mt-7">
           <div className="col-span-3">
-            <div className="grid gap-10 mt-10 lg:gap-10 md:grid-cols-2 xl:grid-cols-2 ">
+            <div className="grid gap-10 mt-10 lg:gap-10 md:grid-cols-2 xl:grid-cols-2 pt-4 pr-20">
               {posts?.map((post) => (
                 <PostList key={post.id} post={post} aspect="square" />
               ))}
