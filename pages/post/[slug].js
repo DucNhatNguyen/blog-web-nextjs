@@ -25,7 +25,7 @@ export default function Post({ data }) {
     <>
       <Layout>
         <div className="grid grid-cols-4 gap mt-7">
-          <div className="col-span-3 ">
+          <div className="col-span-3 px-16">
             <div className="container py-5 lg:py-8 max-w-screen-lg !pt-0">
               <div className="max-w-screen-md ">
                 <div className="flex ">
