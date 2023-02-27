@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import Image from "next/legacy/image";
 import Link from "next/link";
@@ -18,12 +19,15 @@ export default function Post({ data }) {
     if (!router.isFallback && !slug) {
       return <ErrorPage statusCode={404} />;
     }
-    console.log("data", data);
+    //console.log("data", data);
   }, [data, router.isFallback, slug]);
 
   return (
     <>
       <Layout>
+        <Head>
+          <title>{data.title}</title>
+        </Head>
         <div className="grid grid-cols-4 gap mt-7">
           <div className="col-span-3 px-16">
             <div className="container py-5 lg:py-8 max-w-screen-lg !pt-0">

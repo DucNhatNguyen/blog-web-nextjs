@@ -6,7 +6,7 @@ export default function AuthorCard(props) {
   const { data } = props;
 
   useEffect(() => {
-    console.log("authorrrrrrr", data);
+    //console.log("authorrrrrrr", data);
   }, []);
 
   return (

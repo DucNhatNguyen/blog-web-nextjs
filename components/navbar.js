@@ -40,7 +40,7 @@ export default function Navbar(props) {
           <div className="flex-col items-center justify-start ">
             <Link href="/">
               <Image
-                src={require("../public/vercel.svg")}
+                src={require("../public/images/icons/blog.svg")}
                 alt="Logo"
                 width={112}
                 heigh={44.11}
