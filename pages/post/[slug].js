@@ -110,7 +110,7 @@ export default function Post({ data }) {
 
 export async function getStaticProps({ params }) {
   const { data } = await axios.get(
-    `http://localhost:8080/api/web/post/${params.slug}`
+    `https://blog-nodejs.onrender.com/api/web/post/${params.slug}`
   );
 
   return {
@@ -123,7 +123,7 @@ export async function getStaticProps({ params }) {
 
 export async function getStaticPaths() {
   const { data } = await axios.get(
-    "http://localhost:8080/api/web/static-post-path"
+    "https://blog-nodejs.onrender.com/api/web/static-post-path"
   );
 
   return {
