@@ -1,7 +1,10 @@
 import React from "react";
+import Image from "next/legacy/image";
+import Link from "next/link";
 import { Input } from "antd";
 
-export default function RightSideBar() {
+export default function RightSideBar({ data }) {
+  console.log("data", data);
   const onSearch = (value) => {
     console.log(value);
   };
@@ -14,21 +17,21 @@ export default function RightSideBar() {
           </p>
         </div>
         <div className="flex flex-col divide-y divide-gray-700">
-          {Array.apply(0, Array(3)).map(function (x, i) {
+          {data?.map(function (x, i) {
             return (
               <div className="flex px-1 py-4 " key={i}>
                 <img
                   alt=""
                   className="flex-shrink-0 object-cover w-20 rounded-lg h-20 mr-4 dark:bg-gray-500"
-                  src="https://source.unsplash.com/random/244x324"
+                  src={x.thumbnail}
                 />
                 <div className="flex flex-col flex-grow">
                   <a
                     rel="noopener noreferrer"
-                    href="#"
+                    href={`/post/${x.slug}`}
                     className="font-serif hover:underline"
                   >
-                    Aenean ac tristique lorem, ut mollis dui.
+                    {x.title}
                   </a>
                   <p className="mt-auto text-xs dark:text-gray-400">
                     5 minutes ago
@@ -37,7 +40,7 @@ export default function RightSideBar() {
                       href="#"
                       className="block dark:text-blue-400 lg:ml-2 lg:inline hover:underline"
                     >
-                      Politics
+                      {x.author_author.name}
                     </a>
                   </p>
                 </div>
@@ -114,3 +117,15 @@ export default function RightSideBar() {
     </div>
   );
 }
+
+export const getStaticProps = async () => {
+  const { data } = await axios.get(
+    `https://blog-nodejs.onrender.com/api/web/post/get-with-view`
+  );
+
+  return {
+    props: {
+      data: data,
+    },
+  };
+};
