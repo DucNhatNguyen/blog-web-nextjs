@@ -1,10 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/legacy/image";
 import Link from "next/link";
+import axios from "axios";
 import { Input } from "antd";
 
-export default function RightSideBar({ data }) {
-  console.log("data", data);
+export default function RightSideBar() {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const { data } = await axios.get(
+        `https://blog-nodejs.onrender.com/api/web/post/get-with-view`
+      );
+
+      if (data != null) {
+        setData(data.data);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   const onSearch = (value) => {
     console.log(value);
   };
@@ -117,15 +133,3 @@ export default function RightSideBar({ data }) {
     </div>
   );
 }
-
-export const getStaticProps = async () => {
-  const { data } = await axios.get(
-    `https://blog-nodejs.onrender.com/api/web/post/get-with-view`
-  );
-
-  return {
-    props: {
-      data: data,
-    },
-  };
-};
