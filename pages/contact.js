@@ -1,4 +1,5 @@
 import Layout from "../components/layout";
+import Head from "next/head";
 import { useState, useEffect } from "react";
 //import { MapPinIcon, EnvelopeIcon, PhoneIcon } from "@heroicons/react/outline";
 import { Button, Form, Input } from "antd";
@@ -16,6 +17,9 @@ export default function Contact() {
 
   return (
     <Layout>
+      <Head>
+        <title>Liên hệ</title>
+      </Head>
       <div className="container px-8 py-5 lg:py-8 mx-auto xl:px-5 max-w-screen-lg">
         <h1 className="mt-2 mb-3 text-3xl font-semibold tracking-tight text-center lg:leading-snug text-brand-primary lg:text-4xl dark:text-white">
           Contact
