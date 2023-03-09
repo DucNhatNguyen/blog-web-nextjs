@@ -47,7 +47,7 @@ export default function About({ data }) {
 }
 
 export const getStaticProps = async () => {
-  const { data } = await axios.get(`http://localhost:8080/api/web/page/author`);
+  const { data } = await axios.get(`https://blog-nodejs.onrender.com/api/web/page/author`);
 
   return {
     props: {
